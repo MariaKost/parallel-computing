@@ -261,8 +261,9 @@ int main(int argc, char **argv) {
   }
   fprintf(data, "\n");
   
-  free(arr);
   free(tmp_arr);
+  free(qsort_arr);
+  free(arr);
   fclose(stats);
   fclose(data);
   return 0;
