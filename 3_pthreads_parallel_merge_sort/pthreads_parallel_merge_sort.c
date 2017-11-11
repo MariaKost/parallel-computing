@@ -50,7 +50,7 @@ int binsearch(int *arr, int l, int r, int target) {
 }
 
 void *merge(void *context) {
-  merge_ctx *ctx = context;
+  merge_ctx *ctx = (merge_ctx*) context;
   int index1 = ctx->l1;
   int index2 = ctx->l2;
   while (index1 < ctx->r1 && index2 < ctx->r2) {
@@ -124,7 +124,7 @@ void merge_sort_single_process(par_merge_sort_ctx *ctx) {
 }
 
 void *parallel_merge_sort(void *context) {
-  par_merge_sort_ctx *ctx = context;
+  par_merge_sort_ctx *ctx = (par_merge_sort_ctx*) context;
   if (ctx->num_of_aval_threads <= 1) {
     merge_sort_single_process(ctx);
     return NULL;
@@ -254,13 +254,13 @@ int main(int argc, char **argv) {
   fprintf(data, "\n");
   
   // for measuring qsort execution time
-//  double qsort_prog_work_time = 0;
-//  struct timeval q_start, q_finish;
-//  gettimeofday(&q_start, NULL);
-//  qsort(qsort_arr, n, sizeof(int), cmp);
-//  gettimeofday(&q_finish, NULL);
-//  qsort_prog_work_time = q_finish.tv_sec - q_start.tv_sec + (q_finish.tv_usec - q_start.tv_usec) / 1.e6;
-//  fprintf(stats, "qsort: %.5lfs\n", qsort_prog_work_time);
+  //  double qsort_prog_work_time = 0;
+  //  struct timeval q_start, q_finish;
+  //  gettimeofday(&q_start, NULL);
+  //  qsort(qsort_arr, n, sizeof(int), cmp);
+  //  gettimeofday(&q_finish, NULL);
+  //  qsort_prog_work_time = q_finish.tv_sec - q_start.tv_sec + (q_finish.tv_usec - q_start.tv_usec) / 1.e6;
+  //  fprintf(stats, "qsort: %.5lfs\n", qsort_prog_work_time);
   
   free(tmp_arr);
   free(qsort_arr);
@@ -269,3 +269,4 @@ int main(int argc, char **argv) {
   fclose(data);
   return 0;
 }
+
